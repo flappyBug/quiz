@@ -26,6 +26,8 @@ export default class AddProductPage extends Component {
     });
   };
   render() {
+    const { name, price, unit, image } = this.state;
+    const disableButton = !(name && price && unit && image);
     return (
       <div className="page">
         <h1>添加商品</h1>
@@ -64,7 +66,9 @@ export default class AddProductPage extends Component {
           id="image"
           onChange={this.onFormChange}
         />
-        <button onClick={this.onSubmit}>提交</button>
+        <button disabled={disableButton} onClick={this.onSubmit}>
+          提交
+        </button>
       </div>
     );
   }
