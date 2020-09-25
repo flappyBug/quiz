@@ -1,0 +1,17 @@
+.product {
+    border: solid 1px lightgray;
+    width: 200px;
+}
+
+.product>img {
+    width: 200px;
+    height: 200px;
+}
+
+.product>.desc {
+    color: gray;
+}
+
+.product>button {
+    border-radius: 50%;
+}
