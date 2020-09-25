@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twuc.shopping.domain.Product;
 import com.twuc.shopping.po.ProductPO;
 import com.twuc.shopping.repository.ProductRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -41,6 +42,11 @@ public class ProductControllerTest {
         assertEquals("https://example.com/cola.png", product.getImage());
     }
 
+    @BeforeEach
+    void setUp() {
+        productRepository.deleteAll();
+    }
+
     @Test
     void should_get_products() throws Exception {
 
@@ -65,5 +71,15 @@ public class ProductControllerTest {
         int id = Integer.parseInt(productId);
         ProductPO productPO = productRepository.findById(id).get();
         assertIsDemoProduct(Product.fromProductPO(productPO));
+    }
+
+    @Test
+    void should_get_conflict_when_add_product_with_existing_name() throws Exception {
+        Product product = getDemoProduct();
+        productRepository.save(product.toProductPO());
+        mockMvc.perform(post("/product")
+                .content(objectMapper.writeValueAsString(product))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isConflict());
     }
 }

@@ -2,13 +2,11 @@ package com.twuc.shopping.api;
 
 
 import com.twuc.shopping.domain.Product;
+import com.twuc.shopping.error.ProductConflictException;
 import com.twuc.shopping.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,5 +31,11 @@ public class ProductController {
     @GetMapping("/product")
     public ResponseEntity<List<Product>> getProducts() {
         return ResponseEntity.ok(productService.getProducts());
+    }
+
+    @ExceptionHandler({ProductConflictException.class})
+    public ResponseEntity<Error> handleException(ProductConflictException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new Error("product name exists"));
     }
 }

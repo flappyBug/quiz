@@ -1,6 +1,7 @@
 package com.twuc.shopping.service;
 
 import com.twuc.shopping.domain.Product;
+import com.twuc.shopping.error.ProductConflictException;
 import com.twuc.shopping.po.ProductPO;
 import com.twuc.shopping.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class ProductService {
     }
 
     public Integer addProduct(Product product) {
+        if (productRepository.existsByName(product.getName())) {
+            throw new ProductConflictException();
+        }
         ProductPO productPO = product.toProductPO();
         productRepository.save(productPO);
         return productPO.getId();
