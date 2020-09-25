@@ -1,17 +1,29 @@
-import React from "react";
+import React, { Component } from "react";
 import AddProductPage from "./AddProductPage";
-import "./App.css";
-import Product from "./Product";
-import ProductList from "./ProductList";
+import OrderPage from "./OrderPage";
+import Header from "./Header";
+import ProductListPage from "./ProductListPage";
 
-function App() {
-  return (
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import "./App.css";
+
+export default class App extends Component {
+  render = () => (
     <div className="App">
-      <header className="App-header"></header>
-      <ProductList />
-      <AddProductPage />
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <ProductListPage />
+          </Route>
+          <Route path="/order">
+            <OrderPage />
+          </Route>
+          <Route path="/add">
+            <AddProductPage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
-
-export default App;

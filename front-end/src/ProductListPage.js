@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Api from "./Api";
 import Product from "./Product";
 
-export default class ProductList extends Component {
+export default class ProductListPage extends Component {
   state = {
     isLoading: true,
     products: [],
