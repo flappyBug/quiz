@@ -65,4 +65,8 @@ public class Product {
                 .unit(unit)
                 .build();
     }
+
+    public static Product fromProductPO(ProductPO productPO) {
+        return new Product(productPO.getName(), productPO.getPrice(), productPO.getUnit(), productPO.getImage());
+    }
 }
