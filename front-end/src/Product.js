@@ -8,7 +8,10 @@ const Product = ({ name, price, unit, image, onAddToCart }) => (
     <p className="desc">
       单价：{price}元/{unit}
     </p>
-    <button className="button-add" onClick={onAddToCart}>
+    <button
+      className="button-add"
+      onClick={() => onAddToCart({ name, price, unit, image })}
+    >
       +
     </button>
   </div>
