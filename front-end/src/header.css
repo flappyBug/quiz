@@ -1,0 +1,19 @@
+header {
+  background-color: #001628;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+}
+header li > a {
+  color: white;
+  display: block;
+  text-decoration: none;
+  padding: 10px;
+}
+
+header a.active {
+  background-color: #2493fd;
+}

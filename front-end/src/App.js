@@ -4,7 +4,7 @@ import OrderPage from "./OrderPage";
 import Header from "./Header";
 import ProductListPage from "./ProductListPage";
 
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
 export default class App extends Component {
@@ -13,7 +13,7 @@ export default class App extends Component {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path="/">
+          <Route path="/mall">
             <ProductListPage />
           </Route>
           <Route path="/order">
@@ -22,6 +22,7 @@ export default class App extends Component {
           <Route path="/add">
             <AddProductPage />
           </Route>
+          <Redirect to="/mall" />
         </Switch>
       </BrowserRouter>
     </div>

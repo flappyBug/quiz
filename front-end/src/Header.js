@@ -1,18 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
+import "./header.css";
 const Header = () => (
   <header>
     <nav>
       <ul>
         <li>
-          <Link to="/">商城</Link>
+          <NavLink to="/mall">商城</NavLink>
         </li>
         <li>
-          <Link to="/order">订单</Link>
+          <NavLink to="/order">订单</NavLink>
         </li>
         <li>
-          <Link to="/add">添加商品</Link>
+          <NavLink to="/add">添加商品</NavLink>
         </li>
       </ul>
     </nav>
