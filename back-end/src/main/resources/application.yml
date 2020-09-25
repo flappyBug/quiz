@@ -1,0 +1,9 @@
+spring:
+  # change datasource before running
+  datasource:
+    url: jdbc:mysql://localhost:3306/shopping
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create
