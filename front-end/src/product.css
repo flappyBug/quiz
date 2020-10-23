@@ -1,6 +1,7 @@
 .product {
     border: solid 1px lightgray;
     width: 200px;
+    margin: 5px;
 }
 
 .product>img {

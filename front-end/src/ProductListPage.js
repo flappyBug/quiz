@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Api from "./Api";
-import { Button } from "antd";
+import { Button, Popover } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import Product from "./Product";
 import "./productListPage.css";
@@ -31,12 +31,18 @@ export default class ProductListPage extends Component {
             {...product}
           />
         ))}
-        <Button
-          className='shopping-cart'
-          type='primary'
-          shape='circle'
-          icon={<ShoppingCartOutlined />}
-        />
+        <Popover
+          placement='topRight'
+          content='暂无商品，请添加商品'
+          trigger='click'
+        >
+          <Button
+            className='shopping-cart'
+            type='primary'
+            shape='circle'
+            icon={<ShoppingCartOutlined />}
+          />
+        </Popover>
       </div>
     );
   }
