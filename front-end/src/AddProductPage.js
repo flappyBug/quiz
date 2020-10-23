@@ -14,11 +14,18 @@ export default class AddProductPage extends Component {
   onSubmit = async event => {
     event.preventDefault();
     try {
-      await Api.post("/product", {
+      const response = await Api.post("/product", {
         price: Math.round(this.state.price * 100),
         ...this.state,
       });
-      message.success("提交成功");
+      if (response.status === 201) {
+        message.success("提交成功");
+        return;
+      }
+      if (response.status === 409) {
+        message.error("商品名称已存在，请输入新的商品名称");
+        return;
+      }
     } catch (e) {
       message.error("提交失败");
     }
