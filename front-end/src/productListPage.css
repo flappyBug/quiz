@@ -1,0 +1,10 @@
+.product-list {
+    position: relative;
+    height: 100%;
+}
+
+.shopping-cart {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+}
