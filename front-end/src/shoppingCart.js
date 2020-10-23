@@ -1,10 +1,11 @@
 import React from "react";
-import { Table } from "antd";
+import { Table, Button } from "antd";
 import {
   DeleteOutlined,
   PlusCircleOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
+import "./shoppingCart.css";
 
 const renderDeleteOrderButton = (product, onDelete) => (
   <DeleteOutlined onClick={() => onDelete(product)} />
@@ -13,7 +14,7 @@ const renderDeleteOrderButton = (product, onDelete) => (
 const renderCount = (count, product, onAdd, onSub) => (
   <div>
     <MinusCircleOutlined onClick={() => onSub(product)} />
-    {count}
+    <span>{count}</span>
     <PlusCircleOutlined onClick={() => onAdd(product)} />
   </div>
 );
@@ -50,7 +51,13 @@ const ShoppingCart = ({
     .filter(({ count }) => count > 0);
 
   return dataSource.length > 0 ? (
-    <Table dataSource={dataSource} columns={columns} />
+    <div className='shopping-cart-popup'>
+      <Table dataSource={dataSource} columns={columns} pagination={false} />
+      <div className='buttons'>
+        <Button onClick={onClearCart}>清空</Button>
+        <Button type='primary'>立即下单</Button>
+      </div>
+    </div>
   ) : (
     "暂无商品，请添加商品"
   );

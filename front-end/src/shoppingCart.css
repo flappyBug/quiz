@@ -1,0 +1,14 @@
+.shopping-cart-popup {
+    display: inline-block;
+}
+
+.shopping-cart-popup span {
+    margin: 0 8px;
+    display: inline-block;
+}
+
+.shopping-cart-popup .buttons button {
+    margin-top: 10px;
+    float: right;
+    margin-left: 10px;
+}
