@@ -6,8 +6,8 @@
     height: 70vh;
 }
 
-.shopping-cart {
+.shopping-cart-button {
     position: absolute;
-    right: 30px;
+    right: 50px;
     bottom: 30px;
 }

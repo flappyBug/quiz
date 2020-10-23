@@ -46,9 +46,10 @@ export default class ProductListPage extends Component {
           trigger='click'
         >
           <Button
-            className='shopping-cart'
+            className='shopping-cart-button'
             type='primary'
             shape='circle'
+            size='large'
             icon={<ShoppingCartOutlined />}
           />
         </Popover>
