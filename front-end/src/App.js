@@ -24,9 +24,35 @@ export default class App extends Component {
       };
     }
     this.setState({
-      orders: Object.assign({ [product.name]: order }, this.state.orders),
+      orders: Object.assign({}, this.state.orders, { [product.name]: order }),
     });
   };
+
+  onRemoveFromCart = product => {
+    this.setState({
+      orders: Object.assign({}, this.state.orders, {
+        [product.name]: {
+          count: 0,
+          product,
+        },
+      }),
+    });
+  };
+
+  onSubstractOrderInCart = product => {
+    let order = this.state.orders[product.name];
+    order.count = order.count > 0 ? order.count - 1 : 0;
+    this.setState({
+      orders: Object.assign({}, this.state.orders, {
+        [product.name]: order,
+      }),
+    });
+  };
+
+  onClearCart = () => {
+    this.setState({ orders: {} });
+  };
+
   render = () => (
     <div className='App'>
       <BrowserRouter>
@@ -34,7 +60,13 @@ export default class App extends Component {
         <main className='content'>
           <Switch>
             <Route path='/mall'>
-              <ProductListPage onAddToCart={this.onAddToCart} />
+              <ProductListPage
+                onAddToCart={this.onAddToCart}
+                orders={this.state.orders}
+                onSubstractOrderInCart={this.onSubstractOrderInCart}
+                onRemoveFromCart={this.onRemoveFromCart}
+                onClearCart={this.onClearCart}
+              />
             </Route>
             <Route path='/order'>
               <OrderPage orders={this.state.orders} />
