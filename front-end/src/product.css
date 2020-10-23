@@ -2,6 +2,7 @@
     border: solid 1px lightgray;
     width: 200px;
     margin: 5px;
+    text-align: left;
 }
 
 .product>img {
@@ -9,10 +10,17 @@
     height: 200px;
 }
 
-.product>.desc {
+.product .price {
     color: gray;
+    font-size: small;
+    margin: 0;
 }
 
-.product>button {
-    border-radius: 50%;
+.product .desc {
+    padding: 10px;
+}
+
+.product button {
+    float: right;
+    margin-bottom: 15px;
 }
