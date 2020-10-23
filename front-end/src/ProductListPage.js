@@ -4,6 +4,7 @@ import { Button, Popover } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import Product from "./Product";
 import "./productListPage.css";
+import ShoppingCart from "./ShoppingCart";
 export default class ProductListPage extends Component {
   state = {
     isLoading: true,
@@ -33,7 +34,15 @@ export default class ProductListPage extends Component {
         ))}
         <Popover
           placement='topRight'
-          content='暂无商品，请添加商品'
+          content={
+            <ShoppingCart
+              orders={this.props.orders}
+              onAddToCart={this.props.onAddToCart}
+              onClearCart={this.props.onClearCart}
+              onRemoveFromCart={this.props.onRemoveFromCart}
+              onSubstractOrderInCart={this.props.onSubstractOrderInCart}
+            />
+          }
           trigger='click'
         >
           <Button
