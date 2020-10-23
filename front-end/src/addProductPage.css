@@ -1,0 +1,13 @@
+.add-product-page {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.add-product-page * {
+    margin-bottom: 10px;
+}
+
+.add-product-page input {
+    width: 100%;
+}
