@@ -42,11 +42,18 @@ const ShoppingCart = ({
         renderDeleteOrderButton(product, onRemoveFromCart),
     },
   ];
-  const dataSource = Object.entries(orders).map(([name, product]) => ({
-    name,
-    count: product.count,
-  }));
-  return <Table dataSource={dataSource} columns={columns} />;
+  const dataSource = Object.entries(orders)
+    .map(([name, product]) => ({
+      name,
+      count: product.count,
+    }))
+    .filter(({ count }) => count > 0);
+
+  return dataSource.length > 0 ? (
+    <Table dataSource={dataSource} columns={columns} />
+  ) : (
+    "暂无商品，请添加商品"
+  );
 };
 
 export default ShoppingCart;
