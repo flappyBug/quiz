@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AddProductPage from "./AddProductPage";
 import OrderPage from "./OrderPage";
 import Header from "./Header";
+import Footer from "./Footer";
 import ProductListPage from "./ProductListPage";
 
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
@@ -12,7 +13,7 @@ export default class App extends Component {
     orders: {},
   };
 
-  onAddToCart = (product) => {
+  onAddToCart = product => {
     let order = this.state.orders[product.name];
     if (order) {
       order.count += 1;
@@ -27,22 +28,25 @@ export default class App extends Component {
     });
   };
   render = () => (
-    <div className="App">
+    <div className='App'>
       <BrowserRouter>
         <Header />
-        <Switch>
-          <Route path="/mall">
-            <ProductListPage onAddToCart={this.onAddToCart} />
-          </Route>
-          <Route path="/order">
-            <OrderPage orders={this.state.orders} />
-          </Route>
-          <Route path="/add">
-            <AddProductPage />
-          </Route>
-          <Redirect to="/mall" />
-        </Switch>
+        <main className='content'>
+          <Switch>
+            <Route path='/mall'>
+              <ProductListPage onAddToCart={this.onAddToCart} />
+            </Route>
+            <Route path='/order'>
+              <OrderPage orders={this.state.orders} />
+            </Route>
+            <Route path='/add'>
+              <AddProductPage />
+            </Route>
+            <Redirect to='/mall' />
+          </Switch>
+        </main>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
